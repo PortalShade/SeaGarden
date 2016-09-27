@@ -3,6 +3,7 @@
 #pragma once
 
 #include "GameFramework/Actor.h"
+#include "CreatureBase.h"
 #include "CreatureSpawn.generated.h"
 
 UCLASS()
@@ -20,6 +21,7 @@ public:
 	// Called every frame
 	virtual void Tick( float DeltaSeconds ) override;
 
-	
+	UFUNCTION(BlueprintCallable, Category = Spawning)
+	void SpawnCreature(TSubclassOf<ACreatureBase> CreatureToSpawn);
 	
 };

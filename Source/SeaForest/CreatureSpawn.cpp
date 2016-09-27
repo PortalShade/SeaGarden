@@ -26,3 +26,8 @@ void ACreatureSpawn::Tick( float DeltaTime )
 
 }
 
+void ACreatureSpawn::SpawnCreature(TSubclassOf<ACreatureBase> CreatureToSpawn)
+{
+
+}
+

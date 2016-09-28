@@ -12,16 +12,18 @@ class SEAFOREST_API ACreatureSpawn : public AActor
 	GENERATED_BODY()
 	
 public:	
-	// Sets default values for this actor's properties
 	ACreatureSpawn();
 
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	
-	// Called every frame
 	virtual void Tick( float DeltaSeconds ) override;
+
+	FActorSpawnParameters SpawnParams;
 
 	UFUNCTION(BlueprintCallable, Category = Spawning)
 	void SpawnCreature(TSubclassOf<ACreatureBase> CreatureToSpawn);
 	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Spawning)
+	class AActor* SpawnPoint2;
+
 };

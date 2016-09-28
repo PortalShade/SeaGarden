@@ -4,22 +4,20 @@
 #include "CreatureSpawn.h"
 
 
-// Sets default values
 ACreatureSpawn::ACreatureSpawn()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	SpawnParams.Owner = this;
+	SpawnParams.Instigator = Instigator;
 }
 
-// Called when the game starts or when spawned
 void ACreatureSpawn::BeginPlay()
 {
 	Super::BeginPlay();
 	
 }
 
-// Called every frame
 void ACreatureSpawn::Tick( float DeltaTime )
 {
 	Super::Tick( DeltaTime );
@@ -28,6 +26,27 @@ void ACreatureSpawn::Tick( float DeltaTime )
 
 void ACreatureSpawn::SpawnCreature(TSubclassOf<ACreatureBase> CreatureToSpawn)
 {
+	// Checks a second spawn/end has been set
+	if (!SpawnPoint2) {
+		return;
+	}
 
+	// Create vectors for spawn and end
+	FVector SpawnLoc;
+	FVector EndLoc;
+	int bSpawn2 = FMath::RoundToInt((FMath::FRandRange(0, 1)));
+	
+	if (bSpawn2 == 0) {
+		SpawnLoc = GetActorLocation();
+		EndLoc = SpawnPoint2->GetActorLocation();
+	}
+	else {
+		EndLoc = GetActorLocation();
+		SpawnLoc = SpawnPoint2->GetActorLocation();
+	}
+
+	// Spawn creature and give end destination
+	ACreatureBase* SpawnedCreature = GetWorld()->SpawnActor<ACreatureBase>(CreatureToSpawn, SpawnLoc, FRotator(0.f, 0.f, 0.f), SpawnParams);
+	SpawnedCreature->EndDestination = EndLoc;
 }
 

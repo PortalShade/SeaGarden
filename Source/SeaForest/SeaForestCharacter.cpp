@@ -89,6 +89,7 @@ void ASeaForestCharacter::SetupPlayerInputComponent(class UInputComponent* Input
 
 }
 
+// Interact action for picking up objects, making seeds drop, etc
 void ASeaForestCharacter::Interact_Implementation()
 {
 	if (bIsHoldingObject) {
@@ -110,6 +111,7 @@ void ASeaForestCharacter::Interact_Implementation()
 	}
 }
 
+// Trys to plant the seed that is being held currently
 void ASeaForestCharacter::PlantHeldSeed_Implementation()
 {
 	if (bIsHoldingObject) {

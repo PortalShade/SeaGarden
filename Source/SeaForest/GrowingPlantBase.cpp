@@ -24,6 +24,7 @@ void AGrowingPlantBase::Tick( float DeltaTime )
 
 	CurrentTime += DeltaTime;
 
+	// Makes plants events happen after set times
 	if (EventTimesArray.Num() > 0 && EventTimesArray.Num() > GrowEventCounter + 1) {
 		if (EventTimesArray[GrowEventCounter + 1] <= CurrentTime) {
 			GrowEvent();

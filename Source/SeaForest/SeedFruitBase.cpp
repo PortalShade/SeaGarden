@@ -23,9 +23,12 @@ void ASeedFruitBase::Tick( float DeltaTime )
 
 }
 
+// Plants this seed
 void ASeedFruitBase::PlantSeed_Implementation()
 {
 	if (!bCanBePlanted) { return; }
+
+	// Sets up plant location
 
 	FVector ActorLoc = GetActorLocation();
 	FVector TraceEnd = GetActorLocation() - FVector(0.f, 0.f, 300.f);
@@ -43,6 +46,7 @@ void ASeedFruitBase::PlantSeed_Implementation()
 
 	bool bTrace = GetWorld()->LineTraceSingleByObjectType(HitData, ActorLoc, TraceEnd, ObjTraceParams, TraceParams);
 
+	// Spawns plant
 	if (bTrace) {
 		FActorSpawnParameters SpawnParams;
 		SpawnParams.Owner = this;

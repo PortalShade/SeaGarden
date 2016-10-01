@@ -1,6 +1,7 @@
 // Copyright 1998-2016 Epic Games, Inc. All Rights Reserved.
 #pragma once
 #include "GameFramework/Character.h"
+#include "SeedFruitBase.h"
 #include "SeaForestCharacter.generated.h"
 
 class UInputComponent;
@@ -48,7 +49,7 @@ public:
 
 	bool bIsHoldingObject;
 
-	AActor *HeldObject;
+	ASeedFruitBase *HeldObject;
 
 protected:
 	

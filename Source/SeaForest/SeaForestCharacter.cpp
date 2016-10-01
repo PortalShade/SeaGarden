@@ -2,7 +2,6 @@
 
 #include "SeaForest.h"
 #include "SeaForestCharacter.h"
-#include "SeedFruitBase.h"
 #include "Animation/AnimInstance.h"
 #include "GameFramework/InputSettings.h"
 
@@ -94,6 +93,9 @@ void ASeaForestCharacter::Interact_Implementation()
 {
 	if (bIsHoldingObject) {
 		bIsHoldingObject = false;
+		if (HeldObject) {
+			HeldObject->bIsBeingHeld = false;
+		}
 		return;
 	}
 
@@ -107,6 +109,7 @@ void ASeaForestCharacter::Interact_Implementation()
 
 		if (HeldObject) {
 			bIsHoldingObject = true;
+			HeldObject->bIsBeingHeld = true;
 		}
 	}
 }
@@ -115,7 +118,7 @@ void ASeaForestCharacter::Interact_Implementation()
 void ASeaForestCharacter::PlantHeldSeed_Implementation()
 {
 	if (bIsHoldingObject) {
-		Cast<ASeedFruitBase>(HeldObject)->PlantSeed();
+		HeldObject->PlantSeed();
 		bIsHoldingObject = false;
 	}
 }

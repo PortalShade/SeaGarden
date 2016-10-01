@@ -23,6 +23,9 @@ public:
 
 	bool bCanBePlanted = true;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Stats)
+	bool bIsBeingHeld = false;
+
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = Actions)
 	void PlantSeed();
 	void PlantSeed_Implementation();
